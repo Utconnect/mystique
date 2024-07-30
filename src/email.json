@@ -1,0 +1,182 @@
+{
+  "uuid": "7f1a47b0-d269-40ad-a6c5-2cd0fcd2b948",
+  "lastMigration": 32,
+  "name": "Email",
+  "endpointPrefix": "email",
+  "latency": 0,
+  "port": 5103,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "e31f560c-5f0c-40fc-824b-78c6dc02a583",
+      "type": "http",
+      "documentation": "Send email",
+      "method": "post",
+      "endpoint": "send",
+      "responses": [
+        {
+          "uuid": "2b5eb7e3-5c80-47bf-9485-e415393a45ce",
+          "body": "{\n  \"success\": false,\n  \"error\": \"Template ID do not exist\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Template ID do not exist",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "templateCode",
+              "value": "RESET_PASSWORD",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "4e410ec5-ef2f-4b55-a242-e6ef81533b2c",
+          "body": "{\n  \"success\": false,\n  \"error\": \"Not provided enough placeholders\"\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Not provided enough placeholders",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "templateCode",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "to",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "placeholders.callbackUrl",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "3c5f0363-3761-4c59-a3b0-6ea434378f7c",
+          "body": "{\n  \"success\": true,\n  \"error\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "templateCode",
+              "value": "RESET_PASSWORD",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "to",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "placeholders.callbackUrl",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "e31f560c-5f0c-40fc-824b-78c6dc02a583"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

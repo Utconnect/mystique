@@ -1,0 +1,9 @@
+﻿services:
+  mock-email:
+    image: mockoon/cli:latest
+    container_name: email
+    ports:
+      - "5103:3000"
+    command: ["--data", "data", "--port", "3000"]
+    volumes:
+      - ./src/email.json:/data
