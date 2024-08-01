@@ -94,29 +94,7 @@
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
-          "rules": [
-            {
-              "target": "body",
-              "modifier": "templateCode",
-              "value": "RESET_PASSWORD",
-              "invert": false,
-              "operator": "equals"
-            },
-            {
-              "target": "body",
-              "modifier": "to",
-              "value": "",
-              "invert": true,
-              "operator": "null"
-            },
-            {
-              "target": "body",
-              "modifier": "placeholders.callbackUrl",
-              "value": "",
-              "invert": true,
-              "operator": "null"
-            }
-          ],
+          "rules": [],
           "rulesOperator": "AND",
           "disableTemplating": false,
           "fallbackTo404": false,
