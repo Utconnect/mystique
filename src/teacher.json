@@ -1,0 +1,119 @@
+{
+  "uuid": "157d5706-7230-4359-bb87-b601d64033ec",
+  "lastMigration": 32,
+  "name": "Teacher",
+  "endpointPrefix": "api",
+  "latency": 0,
+  "port": 5004,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "11ec9738-719c-446f-acb2-513712a3424c",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": ":teacherId",
+      "responses": [
+        {
+          "uuid": "ecebedcd-b35a-488e-826e-ef1cb9e47924",
+          "body": "{\n  \"data\": {\n    \"id\": \"{{ urlParam 'teacherId' }}\",\n    \"code\": \"{{ faker 'string.numeric' 4 }}\",\n    \"department\": {\n      \"id\": \"{{ faker 'string.uuid' }}\",\n      \"name\": \"{{ faker 'commerce.department' }}\"\n    },\n    \"faculty\": {\n      \"id\": \"{{ faker 'string.uuid' }}\",\n      \"name\": \"{{ faker 'commerce.department' }}\"\n    }\n  },\n  \"success\": true,\n  \"errors\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "teacherId",
+              "value": "00000000-0000-0000-0000-000000000000",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9c4facb6-eec9-4669-a392-75df2dbf7c6e",
+          "body": "{\n  \"data\": null,\n  \"success\": true,\n  \"errors\": null\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "11ec9738-719c-446f-acb2-513712a3424c"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
