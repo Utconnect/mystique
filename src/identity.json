@@ -11,7 +11,7 @@
     {
       "uuid": "4b28795c-9273-42fb-be23-a2b5c72e50a9",
       "type": "http",
-      "documentation": "",
+      "documentation": "Get basic information",
       "method": "get",
       "endpoint": ":userId",
       "responses": [
@@ -44,7 +44,7 @@
         },
         {
           "uuid": "fca03330-f9ad-44d0-a0c7-746bc5dd21b1",
-          "body": "{\n  \"data\": {\n    \"id\": \"{{ urlParam 'userId' }}\",\n    \"birth\": \"{{ dateFormat ( faker 'date.birthdate') \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" }}\",\n    \"phone\": \"{{ faker 'phone.number' }}\",\n    \"email\": \"{{ faker 'internet.email' }}\",\n    \"isMale\": \"{{ faker 'datatype.boolean'}}\",\n    \"roles\": {{{someOf (array 'teacher' 'faculty-head' 'department-head') 1 2 true }}},\n    \"scopes\": {{{someOf (array 'calendar.create' 'calendar.read' 'calendar.update' 'calendar.delete'  'module.create' 'module.read' 'module.update' 'module.delete' 'module-class.create' 'module-class.read' 'module-class.update' 'module-class.delete') 3 7 true }}},\n    \"teacher\": null\n  },\n  \"success\": true,\n  \"errors\": null\n}",
+          "body": "{\n  \"data\": {\n    \"id\": \"{{ urlParam 'userId' }}\",\n    \"isMale\": \"{{ faker 'datatype.boolean'}}\",\n    \"roles\": {{{someOf (array 'teacher' 'faculty-head' 'department-head') 1 2 true }}},\n    \"scopes\": {{{someOf (array 'calendar.create' 'calendar.read' 'calendar.update' 'calendar.delete'  'module.create' 'module.read' 'module.update' 'module.delete' 'module-class.create' 'module-class.read' 'module-class.update' 'module-class.delete') 3 7 true }}},\n    \"teacher\": null\n  },\n  \"success\": true,\n  \"errors\": null\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "User without teacher data",
@@ -71,7 +71,7 @@
         },
         {
           "uuid": "d546a222-7824-457b-a00f-e438f66a4175",
-          "body": "{\n  \"data\": {\n    \"id\": \"{{ urlParam 'userId' }}\",\n    \"birth\": \"{{ dateFormat ( faker 'date.birthdate') \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" }}\",\n    \"phone\": \"{{ faker 'phone.number' }}\",\n    \"email\": \"{{ faker 'internet.email' }}\",\n    \"isMale\": \"{{ faker 'datatype.boolean'}}\",\n    \"roles\": {{{someOf (array 'teacher' 'faculty-head' 'department-head') 1 2 true }}},\n    \"scopes\": {{{someOf (array 'calendar.create' 'calendar.read' 'calendar.update' 'calendar.delete'  'module.create' 'module.read' 'module.update' 'module.delete' 'module-class.create' 'module-class.read' 'module-class.update' 'module-class.delete') 3 7 true }}},\n    \"teacher\": {\n      \"id\": \"{{ faker 'string.uuid' }}\",\n      \"code\": \"{{ faker 'string.numeric' 4 }}\",\n      \"department\": {\n        \"id\": \"{{ faker 'string.uuid' }}\",\n        \"name\": \"{{ faker 'commerce.department' }}\"\n      },\n      \"faculty\": {\n        \"id\": \"{{ faker 'string.uuid' }}\",\n        \"name\": \"{{ faker 'commerce.department' }}\"\n      }\n    }\n  },\n  \"success\": true,\n  \"errors\": null\n}",
+          "body": "{\n  \"data\": {\n    \"id\": \"{{ urlParam 'userId' }}\",\n    \"isMale\": \"{{ faker 'datatype.boolean'}}\",\n    \"roles\": {{{someOf (array 'teacher' 'faculty-head' 'department-head') 1 2 true }}},\n    \"scopes\": {{{someOf (array 'calendar.create' 'calendar.read' 'calendar.update' 'calendar.delete'  'module.create' 'module.read' 'module.update' 'module.delete' 'module-class.create' 'module-class.read' 'module-class.update' 'module-class.delete') 3 7 true }}},\n    \"teacher\": {\n      \"id\": \"{{ faker 'string.uuid' }}\",\n      \"code\": \"{{ faker 'string.numeric' 4 }}\",\n      \"department\": {\n        \"id\": \"{{ faker 'string.uuid' }}\",\n        \"name\": \"{{ faker 'commerce.department' }}\"\n      },\n      \"faculty\": {\n        \"id\": \"{{ faker 'string.uuid' }}\",\n        \"name\": \"{{ faker 'commerce.department' }}\"\n      }\n    }\n  },\n  \"success\": true,\n  \"errors\": null\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "User with teacher data",
@@ -98,12 +98,72 @@
         }
       ],
       "responseMode": null
+    },
+    {
+      "uuid": "5c188243-48ae-4855-8ff4-923f58066056",
+      "type": "http",
+      "documentation": "Get personal information",
+      "method": "get",
+      "endpoint": ":userId/personal",
+      "responses": [
+        {
+          "uuid": "c557f5bd-6f68-4a45-9be0-9cdd2a9f5cd6",
+          "body": "{\n  \"data\": null,\n  \"success\": true,\n  \"errors\": null\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "userId",
+              "value": "00000000-0000-0000-0000-000000000000",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "ed627475-5580-4812-bea2-d8ffefc209e9",
+          "body": "{\n  \"data\": {\n    \"id\": \"{{ urlParam 'userId' }}\",\n    \"birth\": \"{{ dateFormat ( faker 'date.birthdate') \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" }}\",\n    \"phone\": \"{{ faker 'phone.number' }}\",\n    \"email\": \"{{ faker 'internet.email' }}\",\n    \"isMale\": \"{{ faker 'datatype.boolean'}}\"\n  },\n  \"success\": true,\n  \"errors\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
     }
   ],
   "rootChildren": [
     {
       "type": "route",
       "uuid": "4b28795c-9273-42fb-be23-a2b5c72e50a9"
+    },
+    {
+      "type": "route",
+      "uuid": "5c188243-48ae-4855-8ff4-923f58066056"
     }
   ],
   "proxyMode": false,
