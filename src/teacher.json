@@ -63,12 +63,72 @@
         }
       ],
       "responseMode": null
+    },
+    {
+      "uuid": "92d02324-aaf4-4f59-ba52-72d1e0293479",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "user/:userId",
+      "responses": [
+        {
+          "uuid": "2362aac8-32b3-43ed-b5c3-61fdf4ed7f5f",
+          "body": "{\n  \"data\": {\n    \"id\": \"{{ faker 'string.uuid' }}\",\n    \"code\": \"{{ faker 'string.numeric' 4 }}\",\n    \"department\": {\n      \"id\": \"{{ faker 'string.uuid' }}\",\n      \"name\": \"{{ faker 'commerce.department' }}\"\n    },\n    \"faculty\": {\n      \"id\": \"{{ faker 'string.uuid' }}\",\n      \"name\": \"{{ faker 'commerce.department' }}\"\n    }\n  },\n  \"success\": true,\n  \"errors\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "userId",
+              "value": "00000000-0000-0000-0000-000000000000",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9b052055-9456-453f-99eb-524a54963c19",
+          "body": "{\n  \"data\": null,\n  \"success\": true,\n  \"errors\": null\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
     }
   ],
   "rootChildren": [
     {
       "type": "route",
       "uuid": "11ec9738-719c-446f-acb2-513712a3424c"
+    },
+    {
+      "type": "route",
+      "uuid": "92d02324-aaf4-4f59-ba52-72d1e0293479"
     }
   ],
   "proxyMode": false,
