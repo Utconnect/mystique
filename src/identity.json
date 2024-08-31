@@ -2,7 +2,7 @@
   "uuid": "2fa55293-ce7c-4692-aed9-79128ac89858",
   "lastMigration": 32,
   "name": "Identity",
-  "endpointPrefix": "api",
+  "endpointPrefix": "api/user",
   "latency": 0,
   "port": 5100,
   "hostname": "",
@@ -154,9 +154,77 @@
         }
       ],
       "responseMode": null
+    },
+    {
+      "uuid": "3ffb54ca-aa2c-42cf-afcf-e8f55db0d469",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "",
+      "responses": [
+        {
+          "uuid": "6fe42f05-bcd2-4c92-a35f-d39936416275",
+          "body": "{\n  \"data\": {\n    \"userName\": \"{{ body 'userName' }}\",\n    \"id\": \"{{ faker 'string.uuid' }}\"\n  },\n  \"success\": true,\n  \"errors\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "With username",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "6cadd2f5-cff7-4a39-b427-bd6b900af0b0",
+          "body": "{\n  \"data\": {\n    \"userName\": \"{{ faker 'internet.userName'}}\",\n    \"id\": \"{{ faker 'string.uuid' }}\"\n  },\n  \"success\": true,\n  \"errors\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Without username",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "userName",
+              "value": "",
+              "invert": true,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
     }
   ],
   "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "3ffb54ca-aa2c-42cf-afcf-e8f55db0d469"
+    },
     {
       "type": "route",
       "uuid": "4b28795c-9273-42fb-be23-a2b5c72e50a9"
