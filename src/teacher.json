@@ -2,7 +2,7 @@
   "uuid": "157d5706-7230-4359-bb87-b601d64033ec",
   "lastMigration": 32,
   "name": "Teacher",
-  "endpointPrefix": "api",
+  "endpointPrefix": "teacher",
   "latency": 0,
   "port": 5004,
   "hostname": "",
